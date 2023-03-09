@@ -14,6 +14,14 @@
 		72CA944E29B9341900A04788 /* DemoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72CA944D29B9341900A04788 /* DemoTests.swift */; };
 		72CA945829B9341900A04788 /* DemoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72CA945729B9341900A04788 /* DemoUITests.swift */; };
 		72CA945A29B9341900A04788 /* DemoUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72CA945929B9341900A04788 /* DemoUITestsLaunchTests.swift */; };
+		72CA946829B9348000A04788 /* Turbo in Frameworks */ = {isa = PBXBuildFile; productRef = 72CA946729B9348000A04788 /* Turbo */; };
+		72CA946B29B9358E00A04788 /* MakeHashable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72CA946A29B9358E00A04788 /* MakeHashable.swift */; };
+		72CA946D29B937C300A04788 /* TurboView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72CA946C29B937C300A04788 /* TurboView.swift */; };
+		72CA946F29B9381800A04788 /* SessionGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72CA946E29B9381800A04788 /* SessionGenerator.swift */; };
+		72CA947129B9386500A04788 /* TurboNavigationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72CA947029B9386500A04788 /* TurboNavigationHelper.swift */; };
+		72CA947329B940E400A04788 /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72CA947229B940E400A04788 /* ErrorView.swift */; };
+		72CA947529B9488600A04788 /* path-configuration.json in Resources */ = {isa = PBXBuildFile; fileRef = 72CA947429B9488600A04788 /* path-configuration.json */; };
+		72CA947729B94A2900A04788 /* NumbersListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72CA947629B94A2900A04788 /* NumbersListView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +53,13 @@
 		72CA945329B9341900A04788 /* DemoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DemoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		72CA945729B9341900A04788 /* DemoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoUITests.swift; sourceTree = "<group>"; };
 		72CA945929B9341900A04788 /* DemoUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		72CA946A29B9358E00A04788 /* MakeHashable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeHashable.swift; sourceTree = "<group>"; };
+		72CA946C29B937C300A04788 /* TurboView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TurboView.swift; sourceTree = "<group>"; };
+		72CA946E29B9381800A04788 /* SessionGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionGenerator.swift; sourceTree = "<group>"; };
+		72CA947029B9386500A04788 /* TurboNavigationHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TurboNavigationHelper.swift; sourceTree = "<group>"; };
+		72CA947229B940E400A04788 /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
+		72CA947429B9488600A04788 /* path-configuration.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "path-configuration.json"; path = "../../../turbo-ios/Demo/path-configuration.json"; sourceTree = "<group>"; };
+		72CA947629B94A2900A04788 /* NumbersListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumbersListView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,6 +67,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				72CA946829B9348000A04788 /* Turbo in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -95,9 +111,16 @@
 		72CA943A29B9341700A04788 /* Demo */ = {
 			isa = PBXGroup;
 			children = (
+				72CA946929B9356B00A04788 /* TurboOverrides */,
 				72CA943B29B9341700A04788 /* DemoApp.swift */,
 				72CA943D29B9341700A04788 /* ContentView.swift */,
+				72CA947629B94A2900A04788 /* NumbersListView.swift */,
+				72CA947229B940E400A04788 /* ErrorView.swift */,
+				72CA947029B9386500A04788 /* TurboNavigationHelper.swift */,
+				72CA946E29B9381800A04788 /* SessionGenerator.swift */,
+				72CA946C29B937C300A04788 /* TurboView.swift */,
 				72CA943F29B9341900A04788 /* Assets.xcassets */,
+				72CA947429B9488600A04788 /* path-configuration.json */,
 				72CA944129B9341900A04788 /* Demo.entitlements */,
 				72CA944229B9341900A04788 /* Preview Content */,
 			);
@@ -129,6 +152,14 @@
 			path = DemoUITests;
 			sourceTree = "<group>";
 		};
+		72CA946929B9356B00A04788 /* TurboOverrides */ = {
+			isa = PBXGroup;
+			children = (
+				72CA946A29B9358E00A04788 /* MakeHashable.swift */,
+			);
+			path = TurboOverrides;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -145,6 +176,9 @@
 			dependencies = (
 			);
 			name = Demo;
+			packageProductDependencies = (
+				72CA946729B9348000A04788 /* Turbo */,
+			);
 			productName = Demo;
 			productReference = 72CA943829B9341700A04788 /* Demo.app */;
 			productType = "com.apple.product-type.application";
@@ -217,6 +251,9 @@
 				Base,
 			);
 			mainGroup = 72CA942F29B9341700A04788;
+			packageReferences = (
+				72CA946629B9348000A04788 /* XCRemoteSwiftPackageReference "turbo-ios" */,
+			);
 			productRefGroup = 72CA943929B9341700A04788 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -235,6 +272,7 @@
 			files = (
 				72CA944429B9341900A04788 /* Preview Assets.xcassets in Resources */,
 				72CA944029B9341900A04788 /* Assets.xcassets in Resources */,
+				72CA947529B9488600A04788 /* path-configuration.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -259,7 +297,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				72CA947129B9386500A04788 /* TurboNavigationHelper.swift in Sources */,
+				72CA946F29B9381800A04788 /* SessionGenerator.swift in Sources */,
 				72CA943E29B9341700A04788 /* ContentView.swift in Sources */,
+				72CA947729B94A2900A04788 /* NumbersListView.swift in Sources */,
+				72CA946D29B937C300A04788 /* TurboView.swift in Sources */,
+				72CA947329B940E400A04788 /* ErrorView.swift in Sources */,
+				72CA946B29B9358E00A04788 /* MakeHashable.swift in Sources */,
 				72CA943C29B9341700A04788 /* DemoApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -604,6 +648,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		72CA946629B9348000A04788 /* XCRemoteSwiftPackageReference "turbo-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/hotwired/turbo-ios";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		72CA946729B9348000A04788 /* Turbo */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 72CA946629B9348000A04788 /* XCRemoteSwiftPackageReference "turbo-ios" */;
+			productName = Turbo;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 72CA943029B9341700A04788 /* Project object */;
 }

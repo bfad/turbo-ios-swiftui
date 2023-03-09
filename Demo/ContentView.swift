@@ -8,14 +8,31 @@
 import SwiftUI
 
 struct ContentView: View {
+    @StateObject var navHelper = TurboNavigationHelper()
+    
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
+        NavigationStack(path: $navHelper.navDataStack) {
+            TurboView(session: navHelper.session, url: DemoApp.baseURL)
+                .navigationDestination(for: NavigationDatum.self) { datum in
+                    switch datum {
+                    case .proposal(let proposal):
+                        TurboView(session: navHelper.session, proposal: proposal)
+                    case .imageURL(let url):
+                        AsyncImage(url: url) { image in
+                            image.resizable().scaledToFit()
+                        }
+                        placeholder: {
+                            Text("Loading")
+                        }
+                    case .numbers:
+                        NumbersListView()
+                    case .httpError(let status):
+                        ErrorView(status: status, retryAction: {
+                            navHelper.session.reload()
+                        })
+                    }
+                }
         }
-        .padding()
     }
 }
 
