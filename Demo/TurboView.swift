@@ -22,12 +22,19 @@ struct TurboView: UIViewControllerRepresentable {
         self.proposal = proposal
     }
 
-    func makeUIViewController(context: Context) -> VisitableViewController {
-        let viewController = VisitableViewController(url: proposal.url)
+    func makeUIViewController(context: Context) -> VisitableSwiftUIController {
+        let viewController = VisitableSwiftUIController(url: proposal.url)
         session.visit(viewController, options: proposal.options)
         return viewController
     }
 
-    func updateUIViewController(_ visitableViewController: VisitableViewController, context: Context) {
+    func updateUIViewController(_ viewController: VisitableSwiftUIController, context: Context) {}
+}
+
+class VisitableSwiftUIController: VisitableViewController {
+    override func visitableDidRender() {
+        // In order to get the navigation title to be set, we must set it on the parent
+        // wrapper that SwiftUI creates
+        self.parent?.navigationItem.title = visitableView.webView?.title
     }
 }

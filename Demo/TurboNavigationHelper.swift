@@ -30,7 +30,7 @@ class TurboNavigationHelper: NSObject, ObservableObject, SessionDelegate {
                 navDataStack.removeLast()
                 // Load it up in the current view's WebKit because SwiftUI doesn't seem to re-render
                 // the views when the `proposals` array doesn't change size.
-                (session.topmostVisitable! as! VisitableViewController).visitableURL = proposal.url
+                (session.topmostVisitable! as! VisitableSwiftUIController).visitableURL = proposal.url
                 session.visit(session.topmostVisitable!)
             }
             navDataStack.append(navigationDatum)
