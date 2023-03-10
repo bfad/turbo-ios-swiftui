@@ -17,6 +17,7 @@ struct ContentView: View {
                     switch datum {
                     case .proposal(let proposal):
                         TurboView(session: navHelper.session, proposal: proposal)
+                            .navigationBarTitleDisplayMode(.inline)
                     case .imageURL(let url):
                         AsyncImage(url: url) { image in
                             image.resizable().scaledToFit()
@@ -33,6 +34,7 @@ struct ContentView: View {
                     }
                 }
         }
+        .accentColor(Color("Tint"))
     }
 }
 

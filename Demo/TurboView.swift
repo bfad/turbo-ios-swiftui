@@ -2,39 +2,39 @@
 //  TurboView.swift
 //  Demo
 //
-//  Created by Brad Lindsay on 3/8/23.
+//  Created by Brad Lindsay on 3/10/23.
 //
 
 import SwiftUI
 import Turbo
 
-struct TurboView: UIViewControllerRepresentable {
+struct TurboView: View {
     let session: Session
     let proposal: VisitProposal
+    @State var navTitle: String?
     
-    public init(session: Session, url: URL) {
-        self.session = session
-        self.proposal = VisitProposal(url: url, options: VisitOptions())
+    var body: some View {
+        if let title = navTitle {
+            TurboUIWrapperView(session: session, proposal: proposal, title: $navTitle)
+                .navigationBarTitle(Text(title))
+        } else {
+            TurboUIWrapperView(session: session, proposal: proposal, title: $navTitle)
+        }
     }
-    
-    public init(session: Session, proposal: VisitProposal) {
-        self.session = session
-        self.proposal = proposal
-    }
-
-    func makeUIViewController(context: Context) -> VisitableSwiftUIController {
-        let viewController = VisitableSwiftUIController(url: proposal.url)
-        session.visit(viewController, options: proposal.options)
-        return viewController
-    }
-
-    func updateUIViewController(_ viewController: VisitableSwiftUIController, context: Context) {}
 }
 
-class VisitableSwiftUIController: VisitableViewController {
-    override func visitableDidRender() {
-        // In order to get the navigation title to be set, we must set it on the parent
-        // wrapper that SwiftUI creates
-        self.parent?.navigationItem.title = visitableView.webView?.title
+extension TurboView {
+    init(session: Session, url: URL, navTitle: String? = nil) {
+        self.init(
+            session: session,
+            proposal: VisitProposal(url: url, options: VisitOptions()),
+            navTitle: navTitle
+        )
+    }
+}
+
+struct WrappedTurboView_Previews: PreviewProvider {
+    static var previews: some View {
+        TurboView(session: TurboNavigationHelper().session, url: DemoApp.baseURL)
     }
 }
