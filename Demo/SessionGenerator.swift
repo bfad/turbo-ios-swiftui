@@ -11,7 +11,7 @@ import Turbo
 struct SessionGenerator {
     private static let sharedProcessPool = WKProcessPool()
     
-    public static func makeSession(withDelegate delegate: SessionDelegate, pathConfiguration: PathConfiguration = PathConfiguration()) -> Session {
+    public static func makeSession(withDelegate delegate: SessionDelegate? = nil, pathConfiguration: PathConfiguration = PathConfiguration()) -> Session {
         let configuration = WKWebViewConfiguration()
         configuration.applicationNameForUserAgent = DemoApp.userAgent
         configuration.processPool = Self.sharedProcessPool

@@ -9,7 +9,8 @@ import SwiftUI
 
 struct ContentView: View {
     @StateObject var navHelper = TurboNavigationHelper()
-    
+    @EnvironmentObject var modalData: TurboModalHelper
+
     var body: some View {
         NavigationStack(path: $navHelper.stack) {
             TurboView(session: navHelper.session, url: DemoApp.baseURL)
@@ -35,6 +36,9 @@ struct ContentView: View {
                 }
         }
         .accentColor(Color("Tint"))
+        .onAppear() {
+            navHelper.turboModal = modalData
+        }
     }
 }
 

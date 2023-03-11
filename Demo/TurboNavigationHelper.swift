@@ -13,6 +13,11 @@ import Turbo
 class TurboNavigationHelper: NSObject, ObservableObject, SessionDelegate {
     @Published var session: Session!
     @Published var stack: NavStack<NavigationDatum> = []
+    var turboModal: TurboModalHelper? {
+        didSet {
+            turboModal?.session.delegate = self
+        }
+    }
     
     override init() {
         super.init()
@@ -35,6 +40,14 @@ class TurboNavigationHelper: NSObject, ObservableObject, SessionDelegate {
     }
     
     func session(_ session: Turbo.Session, didProposeVisit proposal: Turbo.VisitProposal) {
+        if let turboModal = turboModal, proposal.properties["presentation"] as? String == "modal" {
+            turboModal.proposal = proposal
+            turboModal.display = true
+            return
+        } else {
+            // Dismiss the modal
+            turboModal?.display = false
+        }
         guard let viewController = proposal.properties["view-controller"] as? String else {
             self.navigate(proposal)
             return

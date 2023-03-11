@@ -19,9 +19,15 @@ struct DemoApp: App {
         .file(Bundle.main.url(forResource: "path-configuration", withExtension: "json")!),
     ])
     
+    @StateObject var modalData = TurboModalHelper()
+    
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environmentObject(modalData)
+                .sheet(isPresented: $modalData.display) {
+                    modalData.content
+                }
         }
     }
 }

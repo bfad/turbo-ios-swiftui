@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		722FBDB129BE50EE003753E2 /* NavStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 722FBDB029BE50EE003753E2 /* NavStack.swift */; };
 		724D2ACC29BBEEBC001FA5D7 /* VisitableSwiftUIController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 724D2ACB29BBEEBC001FA5D7 /* VisitableSwiftUIController.swift */; };
+		724D2ACE29BC2962001FA5D7 /* TurboModalHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 724D2ACD29BC2962001FA5D7 /* TurboModalHelper.swift */; };
 		72CA943C29B9341700A04788 /* DemoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72CA943B29B9341700A04788 /* DemoApp.swift */; };
 		72CA943E29B9341700A04788 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72CA943D29B9341700A04788 /* ContentView.swift */; };
 		72CA944029B9341900A04788 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 72CA943F29B9341900A04788 /* Assets.xcassets */; };
@@ -47,6 +48,7 @@
 /* Begin PBXFileReference section */
 		722FBDB029BE50EE003753E2 /* NavStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavStack.swift; sourceTree = "<group>"; };
 		724D2ACB29BBEEBC001FA5D7 /* VisitableSwiftUIController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisitableSwiftUIController.swift; sourceTree = "<group>"; };
+		724D2ACD29BC2962001FA5D7 /* TurboModalHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TurboModalHelper.swift; sourceTree = "<group>"; };
 		72CA943829B9341700A04788 /* Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Demo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		72CA943B29B9341700A04788 /* DemoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoApp.swift; sourceTree = "<group>"; };
 		72CA943D29B9341700A04788 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -124,6 +126,7 @@
 				72CA947629B94A2900A04788 /* NumbersListView.swift */,
 				72CA947229B940E400A04788 /* ErrorView.swift */,
 				72CA947029B9386500A04788 /* TurboNavigationHelper.swift */,
+				724D2ACD29BC2962001FA5D7 /* TurboModalHelper.swift */,
 				722FBDB029BE50EE003753E2 /* NavStack.swift */,
 				72CA946E29B9381800A04788 /* SessionGenerator.swift */,
 				72CA946C29B937C300A04788 /* TurboUIWrapperView.swift */,
@@ -317,6 +320,7 @@
 				72CA946B29B9358E00A04788 /* MakeHashable.swift in Sources */,
 				722FBDB129BE50EE003753E2 /* NavStack.swift in Sources */,
 				72CA943C29B9341700A04788 /* DemoApp.swift in Sources */,
+				724D2ACE29BC2962001FA5D7 /* TurboModalHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
