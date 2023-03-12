@@ -11,7 +11,7 @@ struct ContentView: View {
     @StateObject var navHelper = TurboNavigationHelper()
     
     var body: some View {
-        NavigationStack(path: $navHelper.navDataStack) {
+        NavigationStack(path: $navHelper.stack) {
             TurboView(session: navHelper.session, url: DemoApp.baseURL)
                 .navigationDestination(for: NavigationDatum.self) { datum in
                     switch datum {

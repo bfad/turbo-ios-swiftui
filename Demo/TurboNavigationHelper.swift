@@ -11,8 +11,8 @@ import UniformTypeIdentifiers
 import Turbo
 
 class TurboNavigationHelper: NSObject, ObservableObject, SessionDelegate {
-    @Published var navDataStack: [NavigationDatum] = []
     @Published var session: Session!
+    @Published var stack: NavStack<NavigationDatum> = []
     
     override init() {
         super.init()
@@ -22,19 +22,16 @@ class TurboNavigationHelper: NSObject, ObservableObject, SessionDelegate {
     func navigate(_ proposal: VisitProposal) {
         let navigationDatum = NavigationDatum.proposal(proposal)
         
-        if let index = navDataStack.firstIndex(of: navigationDatum) {
-            navDataStack.removeSubrange(navDataStack.index(after: index)..<navDataStack.endIndex)
+        guard proposal.options.action == .replace else {
+            stack.appendOrPopTo(navigationDatum)
+            return
         }
-        else {
-            if proposal.options.action == .replace && !navDataStack.isEmpty {
-                navDataStack.removeLast()
-                // Load it up in the current view's WebKit because SwiftUI doesn't seem to re-render
-                // the views when the `proposals` array doesn't change size.
-                (session.topmostVisitable! as! VisitableSwiftUIController).visitableURL = proposal.url
-                session.visit(session.topmostVisitable!)
-            }
-            navDataStack.append(navigationDatum)
-        }
+        
+        // Load it up in the current view's WebKit because SwiftUI doesn't seem to re-render
+        // the views when the `proposals` array doesn't change size.
+        (session.topmostVisitable! as! VisitableSwiftUIController).visitableURL = proposal.url
+        session.visit(session.topmostVisitable!)
+        stack.replaceLast(with: navigationDatum)
     }
     
     func session(_ session: Turbo.Session, didProposeVisit proposal: Turbo.VisitProposal) {
@@ -45,7 +42,7 @@ class TurboNavigationHelper: NSObject, ObservableObject, SessionDelegate {
         
         switch viewController {
         case "numbers":
-            navDataStack.append(.numbers)
+            stack.appendOrPopTo(.numbers)
         default:
             assertionFailure("Invalid view controller, defaulting to WebView")
             self.navigate(proposal)
@@ -70,8 +67,7 @@ class TurboNavigationHelper: NSObject, ObservableObject, SessionDelegate {
         }
         switch statusCode {
         case 404:
-            navDataStack.removeLast()
-            navDataStack.append(.httpError(404))
+            stack.replaceLast(with: .httpError(404))
         default:
             // TODO: Something
             print(statusCode)
@@ -97,7 +93,7 @@ extension TurboNavigationHelper: WKNavigationDelegate {
             // don't need to leave the app. You might expand this in your app
             // to open all audio/video/images in a native media viewer
             if url.host == DemoApp.baseURL.host, let mime = UTType(filenameExtension: url.pathExtension)?.preferredMIMEType, mime.starts(with: "image/") {
-                navDataStack.append(.imageURL(url))
+                stack.appendOrPopTo(.imageURL(url))
             } else {
                 UIApplication.shared.open(url)
             }
