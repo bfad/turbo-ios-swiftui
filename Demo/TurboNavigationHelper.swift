@@ -92,6 +92,13 @@ class TurboNavigationHelper: NSObject, ObservableObject, SessionDelegate {
             return
         }
         switch statusCode {
+        case 401:
+            let proposal = VisitProposal(
+                url: DemoApp.baseURL.appendingPathComponent("signin"),
+                options: VisitOptions()
+            )
+            turboModal!.proposal = proposal
+            turboModal!.display = true
         case 404:
             stack.replaceLast(with: .httpError(404))
         default:
