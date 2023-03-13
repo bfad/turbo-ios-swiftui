@@ -13,7 +13,7 @@ struct ContentView: View {
 
     var body: some View {
         NavigationStack(path: $navHelper.stack) {
-            TurboView(session: navHelper.session, url: DemoApp.baseURL)
+            TurboView(session: navHelper.session, proposal: navHelper.rootProposal)
                 .navigationDestination(for: NavigationDatum.self) { datum in
                     switch datum {
                     case .proposal(let proposal):

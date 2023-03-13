@@ -13,6 +13,10 @@ import Turbo
 class TurboNavigationHelper: NSObject, ObservableObject, SessionDelegate {
     @Published var session: Session!
     @Published var stack: NavStack<NavigationDatum> = []
+    var rootProposal = VisitProposal(
+        url: DemoApp.baseURL.appendingPathComponent("/"),
+        options: VisitOptions()
+    )
     var turboModal: TurboModalHelper? {
         didSet {
             turboModal?.session.delegate = self
@@ -25,8 +29,17 @@ class TurboNavigationHelper: NSObject, ObservableObject, SessionDelegate {
     }
     
     func navigate(_ proposal: VisitProposal) {
+        if proposal.url == rootProposal.url {
+            rootProposal = proposal
+            if stack.count == 0 {
+                session.reload()
+            } else {
+                stack.removeAll()
+            }
+            return
+        }
+
         let navigationDatum = NavigationDatum.proposal(proposal)
-        
         guard proposal.options.action == .replace else {
             stack.appendOrPopTo(navigationDatum)
             return
